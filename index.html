@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>QuickBite Canteen</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">QB</span><div><b>QuickBite</b><small>Campus Canteen</small></div></div>
+  <nav><button data-view="menu" class="nav active">Menu</button><button data-view="track" class="nav">Track Order</button><button data-view="staff" class="nav">Staff</button></nav>
+</header>
+
+<main>
+<section id="menu" class="view active">
+  <div class="hero"><div><span class="eyebrow">FAST • FRESH • CAMPUS READY</span><h1>Good food.<br><span>Less waiting.</span></h1><p>Order before you reach the counter and collect when your token is ready.</p></div><div class="hero-card"><strong>Open today</strong><span>8:00 AM – 8:00 PM</span><small>Prices shown include all taxes.</small></div></div>
+  <div class="toolbar"><input id="search" placeholder="Search food..."><div id="chips"></div></div>
+  <div class="layout"><div><div id="menuGrid" class="grid"></div></div><aside class="cart"><div class="cart-head"><h2>Your order</h2><span id="cartCount">0</span></div><div id="cartItems" class="cart-items"><div class="empty">Your cart is empty.<br>Add something delicious.</div></div><div class="bill"><div><span>Subtotal</span><b id="cartTotal">₹0</b></div><button id="checkoutBtn" class="primary" disabled>Continue to checkout</button></div></aside></div>
+</section>
+
+<section id="checkout" class="view narrow">
+  <button class="back" data-view="menu">← Back to menu</button>
+  <div class="panel"><h1>Checkout</h1><p class="muted">Enter your details so the canteen can prepare your order.</p>
+  <form id="checkoutForm">
+    <label>Name<input name="nm" maxlength="60" required></label>
+    <label>College roll number<input name="roll" maxlength="30" required></label>
+    <label>10-digit phone number<input name="ph" inputmode="numeric" maxlength="10" required></label>
+    <label>Pickup time<input name="time" type="datetime-local" required></label>
+    <label>Special note <span>(optional)</span><textarea name="note" maxlength="200" placeholder="Less spicy, no onion, etc."></textarea></label>
+    <div class="checkout-total"><span>Total</span><strong id="checkoutTotal">₹0</strong></div>
+    <button class="primary" type="submit">Place order</button>
+  </form></div>
+</section>
+
+<section id="success" class="view narrow">
+  <div class="success panel"><div class="check">✓</div><h1>Order placed!</h1><p>Your token is</p><div id="token" class="token">QB1001</div><p>Show this token at the pickup counter.</p><div class="success-total">Total: <b id="successTotal">₹0</b></div><button class="primary" id="trackNow">Track my order</button><button class="secondary" data-view="menu">Order something else</button></div>
+</section>
+
+<section id="track" class="view narrow">
+  <div class="panel"><h1>Track your order</h1><p class="muted">Enter your QuickBite token.</p><div class="track-row"><input id="trackToken" placeholder="e.g. QB1001" maxlength="20"><button class="primary" id="trackBtn">Track</button></div><div id="trackResult"></div></div>
+</section>
+
+<section id="staff" class="view narrow">
+  <div id="staffLogin" class="panel"><h1>Staff dashboard</h1><p class="muted">Enter the staff PIN to manage live orders.</p><form id="staffForm"><label>Staff PIN<input id="pin" type="password" inputmode="numeric" required></label><button class="primary">Open dashboard</button></form></div>
+  <div id="dashboard" class="panel hidden"><div class="dash-head"><div><h1>Live orders</h1><p class="muted">Manage customer orders in real time.</p></div><button id="refresh" class="secondary">↻ Refresh</button></div><div id="orders" class="orders"></div></div>
+</section>
+</main>
+<div id="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: quickbite-canteen
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: DATA_DIR
+        value: /data
+      - key: STAFF_PIN
+        sync: false
+    disk:
+      name: quickbite-data
+      mountPath: /data
+      sizeGB: 1
