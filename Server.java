@@ -56,7 +56,10 @@ public class Server {
 
   static void ordersApi(HttpExchange x) throws IOException {
     if (cors(x)) return;
-    if (!x.getRequestMethod().equals("GET")) { send(x,405,"application/json","{\"error\":\"Method not allowed\"}"); return; }
+    String method = x.getRequestMethod();
+    // Customers create orders with POST; staff reads the order list with GET.
+    if (method.equals("POST")) { createOrder(x); return; }
+    if (!method.equals("GET")) { send(x,405,"application/json","{\"error\":\"Method not allowed\"}"); return; }
     if (!staff(x)) { send(x,401,"application/json","{\"error\":\"Wrong PIN\"}"); return; }
 
     StringBuilder b=new StringBuilder("[");
